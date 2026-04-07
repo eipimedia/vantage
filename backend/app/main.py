@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import engine, Base
 from app.routers import auth, brands, competitors, ads, briefs, alerts
+from app.routers.brief import router as brief_router
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -25,6 +26,7 @@ app.include_router(competitors.router)
 app.include_router(ads.router)
 app.include_router(briefs.router)
 app.include_router(alerts.router)
+app.include_router(brief_router)
 
 @app.get("/health")
 def health():
